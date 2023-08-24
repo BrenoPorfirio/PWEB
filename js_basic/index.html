@@ -3,18 +3,20 @@
   <head>
     <meta charset="UTF-8" />
   </head>
-
   <body>
-    <div id="meu amor">
-      <button id="botao" onclick="carregarDiv()">Carregando cervejas...</button>
+    <div id="beer">
+      <h1>Carregando cervejas...</h1>
+    </div>
+    <div>
+      <button id="buttonloader" onclick="loadDiv()"></button>
     </div>
   </body>
   <script>
-    function carregarDiv() {
-      let div = document.getElementById("meu amor")
+    function loadDiv() {
+      let div = document.getElementById("beer")
       div.innerHTML = `<h1>Guinness</h1>`
     }
-    let botao = document.getElementByI("botaoCarregar")
-    botao.addEventListener("click", carregarDiv)
+    let button = document.getElementByI("buttonloader")
+    button.addEventListener("click", loadDiv)
   </script>
 </html>
