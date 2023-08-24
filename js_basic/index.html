@@ -4,17 +4,21 @@
     <meta charset="UTF-8" />
   </head>
   <body>
-    <div id="beer">
-      <h1>Carregando cervejas...</h1>
+    <div id="beerDiv">
+      <!-- DIV VAZIA -->
     </div>
     <div>
       <button id="buttonloader" onclick="loadDiv()"></button>
     </div>
   </body>
   <script>
+    let beerVisible = false
+
     function loadDiv() {
-      let div = document.getElementById("beer")
-      div.innerHTML = `<h1>Guinness</h1>`
+      let beerDiv = document.getElementById("beerDiv")
+      let beerContent = beerVisible ? "" : "<h1>Guinness</h1>"
+      beerDiv.innerHTML = beerContent
+      beerVisible = !beerVisible
     }
     let button = document.getElementByI("buttonloader")
     button.addEventListener("click", loadDiv)
