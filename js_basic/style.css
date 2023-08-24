@@ -1,0 +1,19 @@
+#beerDiv {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  margin: auto;
+  width: 150px;
+  height: auto;
+}
+
+#buttonloader {
+  display: flex;
+  margin: auto;
+  width: 150px;
+  height: 50px;
+  background-color: blue;
+  color: white;
+  border-radius: 1px;
+  cursor: pointer;
+}
