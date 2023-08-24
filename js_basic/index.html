@@ -2,25 +2,32 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div id="beerDiv">
       <!-- DIV VAZIA -->
     </div>
     <div>
-      <button id="buttonloader" onclick="loadDiv()"></button>
+      <button id="buttonloader">Carregando cervejas...</button>
     </div>
   </body>
   <script>
     let beerVisible = false
-
     function loadDiv() {
       let beerDiv = document.getElementById("beerDiv")
-      let beerContent = beerVisible ? "" : "<h1>Guinness</h1>"
-      beerDiv.innerHTML = beerContent
       beerVisible = !beerVisible
+      if (beerVisible) {
+        beerDiv.innerHTML = "<h1>Guinness</h1>"
+        beerDiv.style.opacity = "1"
+      } else {
+        beerDiv.style.opacity = "0"
+        setTimeout(() => {
+          beerDiv.innerHTML = ""
+        }, 500)
+      }
     }
-    let button = document.getElementByI("buttonloader")
+    let button = document.getElementById("buttonloader")
     button.addEventListener("click", loadDiv)
   </script>
 </html>
