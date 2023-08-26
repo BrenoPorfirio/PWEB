@@ -10,11 +10,21 @@
     </div>
   </body>
   <script>
-    function carregarDiv() {
+    let cervejas = ["Guiness", "Desperados", "Becks"]
+    function transform(item) {
+      return `<h1>${item}</h1>`
+    }
+    function loadDiv() {
       let div = document.getElementById("meu amor")
-      div.innerHTML = `<h1>Guinness</h1>`
+      // let cervejasHtml = [
+      //   `<h1>${cervejas[0]}</h1>`,
+      //   `<h1>${cervejas[1]}</h1>`,
+      //   `<h1>${cervejas[2]}</h1>`,
+      // ]
+      let cervejasHtml = cervejas.map(transform)
+      div.innerHTML = `${cervejasHtml.join("\n")}`
     }
     let botao = document.getElementById("botaoCarregar")
-    botao.addEventListener("click", carregarDiv)
+    botao.addEventListener("click", loadDiv)
   </script>
 </html>
