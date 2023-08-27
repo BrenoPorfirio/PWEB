@@ -1,14 +1,22 @@
 let cervejas = ["Guinness", "Desperados", "Becks"]
 
-function transformToTableRow(item) {
+function transformToTable(item) {
   return `<tr><td>${item}</td></tr>`
 }
 
 function loadTable() {
   let tableBody = document.querySelector("#cervejasTable tbody")
-  let cervejasHtml = cervejas.map(transformToTableRow)
+  let cervejasHtml = cervejas.map(transformToTable)
   tableBody.innerHTML = cervejasHtml.join("\n")
 }
 
-let botao = document.getElementById("botaoCarregar")
-botao.addEventListener("click", loadTable)
+function sortCervejas() {
+  cervejas.sort()
+  loadTable()
+}
+
+let botaoCarregar = document.getElementById("botaoCarregar")
+botaoCarregar.addEventListener("click", loadTable)
+
+let botaoOrdenar = document.getElementById("BSort")
+botaoOrdenar.addEventListener("click", sortCervejas)
