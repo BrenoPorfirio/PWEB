@@ -4,28 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div id="meu amor">
+    <div id="meuAmor">
       <button id="botaoCarregar">Carregando cervejas...</button>
+      <table id="cervejasTable">
+        <thead>
+          <tr>
+            <th>Cervejas</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
+    <script src="script.js"></script>
   </body>
-  <script>
-    let cervejas = ["Guiness", "Desperados", "Becks"]
-    function transform(item) {
-      return `<div>${item}</div>`
-    }
-    function loadDiv() {
-      let div = document.getElementById("meu amor")
-      // let cervejasHtml = [
-      //   `<h1>${cervejas[0]}</h1>`,
-      //   `<h1>${cervejas[1]}</h1>`,
-      //   `<h1>${cervejas[2]}</h1>`,
-      // ]
-      let cervejasHtml = cervejas.map(transform)
-      div.innerHTML = `${cervejasHtml.join("\n")}`
-    }
-    let botao = document.getElementById("botaoCarregar")
-    botao.addEventListener("click", loadDiv)
-  </script>
 </html>

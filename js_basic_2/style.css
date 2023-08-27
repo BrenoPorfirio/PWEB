@@ -1,5 +1,16 @@
 div {
-  color: blue;
   text-align: center;
-  font-size: larger;
+}
+
+table {
+  border-collapse: separate;
+  width: 100%;
+  border: 1px solid #000000;
+}
+
+th,
+td {
+  background-color: gray;
+  text-align: center;
+  padding: 8px;
 }
