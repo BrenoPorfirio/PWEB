@@ -12,6 +12,11 @@
   cursor: pointer;
 }
 
+#BShuffle {
+  background-color: yellow;
+  cursor: pointer;
+}
+
 table {
   border-collapse: separate;
   width: 100%;
