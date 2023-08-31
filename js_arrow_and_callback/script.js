@@ -1,14 +1,15 @@
-let cervejas = ["Guiness", "Desperados", "Becks"]
-
-function transformar(item) {
+const transformar = (item) => {
   return `<h1>${item}</h1>`
 }
 
-function carregarDiv() {
-  let div = document.getElementById("meu amor")
-  let cervejasHtml = cervejas.map(transformar)
+const carregarDiv = (cervs) => {
+  const div = document.getElementById("meuAmor")
+  const cervejasHtml = cervs.map(transformar)
   div.innerHTML = `${cervejasHtml.join("\n")}`
 }
 
 let botao = document.getElementById("botaoCarregar")
-botao.addEventListener("click", carregarDiv)
+botao.addEventListener("click", () => {
+  const cervejas = ["Guiness", "Desperados", "Becks"]
+  carregarDiv(cervejas)
+})
