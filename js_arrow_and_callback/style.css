@@ -2,9 +2,16 @@
   text-align: center;
 }
 
-button {
-  margin-top: 5%;
-  height: 2em;
+a {
+  text-decoration: none;
+  background-color: blue;
+  color: #fff;
+  padding: 2px 1px;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: #0056b3;
 }
 
 #meuAmor {
