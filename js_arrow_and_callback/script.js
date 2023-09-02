@@ -1,4 +1,4 @@
-let games = [
+const games = [
   "Red Dead Redemption",
   "CS-GO",
   "Deep Rocket Galatic",
@@ -7,37 +7,38 @@ let games = [
 ]
 
 const transformar = (item) => {
-  return `<h1 class="nome-jogo">${item}</h1>`
+  return `<table>${games}</table>`
 }
 
-const sort = () => {
-  games.sort()
-  carregarDiv()
+const transformarPTab = (games) => {
+  return `<table><tr><th>Games</th></tr>${games
+    .map((item) => `<tr><td>${item}</td></tr>`)
+    .join("")}</table>`
 }
 
-const carregarDiv = () => {
+const carregarDiv = (games) => {
   const div = document.getElementById("meuAmor")
   const gamesHtml = games.map(transformar)
-  div.innerHTML = `${gamesHtml.join("\n")}`
+  div.innerHTML = transformarPTab(games)
 }
 
-const shuffle = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[array[i], array[j]] = [array[j], array[i]]
-  }
+const sort = (games) => {
+  const div = document.getElementById("meuAmor")
+  const itensOrdenados = [...games].sort()
+  div.innerHTML = transformarPTab(itensOrdenados)
 }
 
-function shuffleGames() {
-  shuffle(games)
-  carregarDiv()
+const shuffle = (games) => {
+  const div = document.getElementById("meuAmor")
+  const itensEmbaralhados = [...games].sort(() => Math.random() - 0.5)
+  div.innerHTML = transformarPTab(itensEmbaralhados)
 }
 
-let botaoCarregar = document.getElementById("botaoCarregar")
-botaoCarregar.addEventListener("click", carregarDiv)
+const botaoCarregar = document.getElementById("botaoCarregar")
+botaoCarregar.addEventListener("click", () => carregarDiv(games))
 
-let botaoOrdenar = document.getElementById("botaoOrdenar")
-botaoOrdenar.addEventListener("click", sort)
+const botaoOrdenar = document.getElementById("botaoOrdenar")
+botaoOrdenar.addEventListener("click", () => sort(games))
 
-let botaoEmbaralhar = document.getElementById("botaoEmbaralhar")
-botaoEmbaralhar.addEventListener("click", shuffleGames)
+const botaoEmbaralhar = document.getElementById("botaoEmbaralhar")
+botaoEmbaralhar.addEventListener("click", () => shuffle(games))
