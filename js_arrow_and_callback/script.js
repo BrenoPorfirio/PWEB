@@ -16,19 +16,19 @@ const transformarPTab = (games) => {
     .join("")}</table>`
 }
 
-const carregarDiv = (games) => {
+const carregarDiv = () => {
   const div = document.getElementById("meuAmor")
   const gamesHtml = games.map(transformar)
   div.innerHTML = transformarPTab(games)
 }
 
-const sort = (games) => {
+const sort = () => {
   const div = document.getElementById("meuAmor")
   const itensOrdenados = [...games].sort()
   div.innerHTML = transformarPTab(itensOrdenados)
 }
 
-const shuffle = (games) => {
+const shuffle = () => {
   const div = document.getElementById("meuAmor")
   const itensEmbaralhados = [...games].sort(() => Math.random() - 0.5)
   div.innerHTML = transformarPTab(itensEmbaralhados)
