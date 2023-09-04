@@ -1,7 +1,6 @@
 let cervejas = [
   {
     name: "Guiness",
-
     alcohol: "10%",
   },
   {
@@ -17,9 +16,10 @@ let cervejas = [
 const carregarDiv = (cs) => {
   const div = document.getElementById("cervejasDiv")
   const itensHtml = cs.map(
-    (item) => `<div>${item["name"]} -- ${item["alcohol"]}</div>`
+    (item) => `<tr><td>${item["name"]} -- ${item["alcohol"]}</td></tr>`
   )
   div.innerHTML = `${itensHtml.join("\n")}`
 }
+
 let botao = document.getElementById("botaoCarregar")
 botao.addEventListener("click", () => carregarDiv(cervejas))
