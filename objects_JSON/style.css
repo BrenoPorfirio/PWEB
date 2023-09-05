@@ -1,0 +1,28 @@
+div {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: coral;
+  cursor: pointer;
+}
+
+#cervejasDiv {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#cervejasDiv th,
+#cervejasDiv td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid;
+}
+
+#cervejasDiv th {
+  background-color: coral;
+}
