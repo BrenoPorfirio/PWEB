@@ -14,11 +14,15 @@ let cervejas = [
 ]
 //cs é um array de cervejas
 const carregarDiv = (cs) => {
-  const div = document.getElementById("cervejasDiv")
-  const itensHtml = cs.map(
-    (item) => `<tr><td>${item["name"]} -- ${item["alcohol"]}</td></tr>`
-  )
-  div.innerHTML = `${itensHtml.join("\n")}`
+  const tbody = document.querySelector("#cervejasDiv tbody")
+  tbody.innerHTML = ""
+  cs.forEach((item) => {
+    const row = tbody.insertRow()
+    const nomeCell = row.insertCell(0)
+    const alcoolCell = row.insertCell(1)
+    nomeCell.textContent = item.name
+    alcoolCell.textContent = item.alcohol
+  })
 }
 
 let botao = document.getElementById("botaoCarregar")
