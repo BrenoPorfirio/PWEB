@@ -19,17 +19,21 @@ let cervejas = [
   },
 ]
 //cs é um array de cervejas
-const carregarDiv = (cs) => {
-  const tbody = document.querySelector("#cervejasDiv tbody")
+const carregarDiv = (
+  cs,
+  divId = "cervejasDiv",
+  properties = ["name", "alcohol", "ibu", "style"]
+) => {
+  const tbody = document.querySelector(`#${divId} tbody`)
   tbody.innerHTML = ""
-  cs.forEach((item) => {
-    const row = tbody.insertRow()
-    const properties = ["name", "alcohol", "ibu", "style"]
-    properties.forEach((property) => {
-      const cell = row.insertCell()
-      cell.textContent = item[property]
+  const itemsHtml = cs.map((item) => {
+    const cells = properties.map((property) => {
+      const value = item[property] || ""
+      return `<td>${value}</td>`
     })
+    return `<tr>${cells.join("")}</tr>`
   })
+  tbody.innerHTML = itemsHtml.join("\n")
 }
 
 let botao = document.getElementById("botaoCarregar")
