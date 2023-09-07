@@ -18,7 +18,9 @@ let cervejas = [
     style: "APA",
   },
 ]
+
 //cs é um array de cervejas
+
 const carregarDiv = (
   cs,
   Id = "cervejasDiv",
