@@ -21,11 +21,17 @@ let cervejas = [
 //cs é um array de cervejas
 const carregarDiv = (
   cs,
-  divId = "cervejasDiv",
-  properties = ["name", "alcohol", "ibu", "style"]
+  Id = "cervejasDiv",
+  properties = ["name", "alcohol", "ibu", "style"],
+  columns = ["Nome", "Álcool", "Estilo", "Amargor"]
 ) => {
-  const tbody = document.querySelector(`#${divId} tbody`)
-  tbody.innerHTML = ""
+  const div = document.querySelector(`#${Id}`)
+  div.innerHTML = ""
+
+  const columnRow = `<tr>${columns
+    .map((column) => `<th>${column}</th>`)
+    .join("")}</tr>`
+
   const itemsHtml = cs.map((item) => {
     const cells = properties.map((property) => {
       const value = item[property] || ""
@@ -33,7 +39,7 @@ const carregarDiv = (
     })
     return `<tr>${cells.join("")}</tr>`
   })
-  tbody.innerHTML = itemsHtml.join("\n")
+  div.innerHTML = `<table>${columnRow}${itemsHtml.join("\n")}</table>`
 }
 
 let botao = document.getElementById("botaoCarregar")
