@@ -2,8 +2,6 @@ div {
   display: flex;
   justify-content: center;
   text-align: center;
-  border: 1px solid;
-  padding: 10px 20px;
 }
 
 button:hover {
@@ -11,13 +9,9 @@ button:hover {
   cursor: pointer;
 }
 
-#cervejasDiv {
-  border-collapse: collapse;
-  width: 100%;
-}
-
 #cervejasDiv th,
-#cervejasDiv td {
+td {
+  font-family: Arial, Helvetica, sans-serif;
   padding: 8px;
   text-align: center;
   border: 1px solid;
