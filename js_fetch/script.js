@@ -3,14 +3,15 @@ let cervejas = []
 const carregarDiv = (cs) => {
   const div = document.getElementById("cervejasDiv")
   const itensHtml = cs.map(
-    ({ name, alcohol }) => `<div>${name} -- ${alcohol}</div>`
+    ({ name, alcohol, style, ibu }) =>
+      `<div>${name} -- ${alcohol} -- ${style} -- ${ibu}</div> `
   )
   div.innerHTML = `${itensHtml.join("\n")}`
 }
 
 async function carregarCervejas() {
   try {
-    let res = await fetch("https://random-data-ai.com/api/v2/beers?size=3")
+    let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
     cervejas = await res.json()
     carregarDiv(cervejas)
   } catch (err) {
