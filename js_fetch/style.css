@@ -27,7 +27,6 @@ button:before {
   height: 100%;
   left: 0;
   top: 0;
-  opacity: 1;
   filter: blur(30px);
 }
 
