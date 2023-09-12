@@ -4,7 +4,7 @@ const carregarDiv = (cs) => {
   const div = document.getElementById("cervejasDiv")
   const itensHtml = cs.map(
     ({ name, alcohol, style, ibu }) =>
-      `<div>${name} -- ${alcohol} -- ${style} -- ${ibu}</div> `
+      `<p>${name} -- ${alcohol} -- ${style} -- ${ibu}<p>`
   )
   div.innerHTML = `${itensHtml.join("\n")}`
 }
