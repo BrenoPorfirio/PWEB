@@ -6,3 +6,32 @@
 div {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+
+button {
+  background: grey;
+  color: black;
+  width: 100px;
+  height: 60px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: "Raleway", sans-serif;
+  transition: 0.6s;
+  overflow: hidden;
+}
+
+button:before {
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 60px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.5;
+  filter: blur(30px);
+}
+
+button:hover {
+  background: blueviolet;
+  cursor: pointer;
+}
