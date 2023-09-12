@@ -1,19 +1,21 @@
-let cervejas = []
+let vehicle = []
 //cs é um array de cervejas
 const carregarDiv = (cs) => {
   const div = document.getElementById("cervejasDiv")
   const itensHtml = cs.map(
-    ({ name, alcohol, style, ibu }) =>
-      `<p>${name} -- ${alcohol} -- ${style} -- ${ibu}<p>`
+    ({ make_and_model, color, transmission, drive_type }) =>
+      `<p>${make_and_model} -- ${color} -- ${transmission} -- ${drive_type}<p>`
   )
   div.innerHTML = `${itensHtml.join("\n")}`
 }
 
 async function carregarCervejas() {
   try {
-    let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
-    cervejas = await res.json()
-    carregarDiv(cervejas)
+    let res = await fetch(
+      "https://random-data-api.com/api/vehicle/random_vehicle?size=3"
+    )
+    vehicle = await res.json()
+    carregarDiv(vehicle)
   } catch (err) {
     document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
   }
