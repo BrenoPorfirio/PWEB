@@ -1,12 +1,37 @@
-let vehicle = []
-//cs é um array de cervejas
-const carregarDiv = (cs) => {
-  const div = document.getElementById("cervejasDiv")
-  const itensHtml = cs.map(
-    ({ make_and_model, color, transmission, drive_type }) =>
-      `<p>${make_and_model} -- ${color} -- ${transmission} -- ${drive_type}<p>`
-  )
-  div.innerHTML = `${itensHtml.join("\n")}`
+function criarTabela(items, propertyNames, divId) {
+  const div = document.getElementById(divId)
+  const tabela = document.createElement("table")
+  const thead = document.createElement("thead")
+  const tbody = document.createElement("tbody")
+
+  // Cria o cabeçalho da tabela usando map
+  const headerRow = document.createElement("tr")
+  propertyNames
+    .map((propertyName) => {
+      const th = document.createElement("th")
+      th.textContent = propertyName
+      return th
+    })
+    .forEach((th) => headerRow.appendChild(th))
+  thead.appendChild(headerRow)
+  tabela.appendChild(thead)
+
+  // Preenche a tabela com os dados usando map
+  items.map((item) => {
+    const row = document.createElement("tr")
+    propertyNames
+      .map((propertyName) => {
+        const cell = document.createElement("td")
+        cell.textContent = item[propertyName] || ""
+        return cell
+      })
+      .forEach((cell) => row.appendChild(cell))
+    tbody.appendChild(row)
+  })
+
+  tabela.appendChild(tbody)
+  div.innerHTML = "" // Limpa qualquer conteúdo anterior
+  div.appendChild(tabela)
 }
 
 async function carregarCervejas() {
@@ -14,8 +39,12 @@ async function carregarCervejas() {
     let res = await fetch(
       "https://random-data-api.com/api/vehicle/random_vehicle?size=3"
     )
-    vehicle = await res.json()
-    carregarDiv(vehicle)
+    const vehicles = await res.json()
+    criarTabela(
+      vehicles,
+      ["make_and_model", "color", "transmission", "drive_type"],
+      "cervejasDiv"
+    )
   } catch (err) {
     document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
   }
