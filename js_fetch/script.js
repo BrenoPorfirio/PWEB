@@ -1,3 +1,7 @@
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 function criarTabela(items, propertyNames, divId) {
   const div = document.getElementById(divId)
   const tabela = document.createElement("table")
@@ -9,7 +13,7 @@ function criarTabela(items, propertyNames, divId) {
   propertyNames
     .map((propertyName) => {
       const th = document.createElement("th")
-      th.textContent = propertyName
+      th.textContent = capitalizeFirstLetter(propertyName.replace(/_/g, " "))
       return th
     })
     .forEach((th) => headerRow.appendChild(th))
