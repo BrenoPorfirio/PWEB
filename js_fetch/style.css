@@ -36,5 +36,23 @@ button:hover {
 }
 
 table {
+  width: 80%;
   margin: 0 auto;
+  border-collapse: collapse;
+}
+
+tr {
+  background-color: blueviolet;
+}
+
+td {
+  padding: 10px;
+  background-color: grey;
+  border: 1px solid #ccc;
+}
+
+th {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-weight: bold;
 }
