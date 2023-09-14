@@ -38,7 +38,7 @@ function criarTabela(items, propertyNames, divId) {
   div.appendChild(tabela)
 }
 
-async function carregarCervejas() {
+async function carregarVeiculos() {
   try {
     let res = await fetch(
       "https://random-data-api.com/api/vehicle/random_vehicle?size=3"
@@ -47,12 +47,12 @@ async function carregarCervejas() {
     criarTabela(
       vehicles,
       ["make_and_model", "color", "transmission", "drive_type"],
-      "cervejasDiv"
+      "veiculosDiv"
     )
   } catch (err) {
-    document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
+    document.getElementById("veiculosDiv").innerHTML = "Fudeu..."
   }
 }
 
 let botao = document.getElementById("botaoCarregar")
-botao.addEventListener("click", () => carregarCervejas())
+botao.addEventListener("click", () => carregarVeiculos())
