@@ -34,3 +34,7 @@ button:hover {
   background: blueviolet;
   cursor: pointer;
 }
+
+table {
+  margin: 0 auto;
+}
