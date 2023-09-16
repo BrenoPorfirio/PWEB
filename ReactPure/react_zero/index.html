@@ -10,15 +10,20 @@
     <script>
       ReactDOM.render(
         React.createElement(
-          "h1",
-          { id: "my-heading" },
+          "table",
+          { id: "my-table", border: "1" },
           React.createElement(
-            "span",
+            "tr",
             null,
-            "React",
-            React.createElement("em", null, " é muito")
+            React.createElement("th", null, ""),
+            React.createElement("th", null, "")
           ),
-          " massa!"
+          React.createElement(
+            "tr",
+            null,
+            React.createElement("td", null, ""),
+            React.createElement("td", null, "")
+          )
         ),
         document.getElementById("app")
       )
