@@ -4,3 +4,11 @@ div {
   text-align: center;
 }
 
+th {
+  background-color: fuchsia;
+}
+
+td {
+  background-color: black;
+  color: white;
+}
