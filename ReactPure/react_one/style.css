@@ -1,0 +1,58 @@
+* {
+  justify-content: center;
+  text-align: center;
+}
+
+div {
+  font-family: monospace;
+}
+
+button {
+  background: grey;
+  color: black;
+  width: 150px;
+  height: 60px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-family: "Raleway", sans-serif;
+  transition: 0.6s;
+  overflow: hidden;
+}
+
+button:before {
+  display: block;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  filter: blur(30px);
+}
+
+button:hover {
+  background: gold;
+  cursor: pointer;
+}
+
+table {
+  width: 40%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+tr {
+  background-color: gold;
+}
+
+td {
+  padding: 10px;
+  background-color: grey;
+  border: 1px solid black;
+}
+
+th {
+  padding: 10px;
+  border: 1px solid black;
+  font-weight: bold;
+}
