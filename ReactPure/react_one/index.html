@@ -11,6 +11,7 @@
     <script src="./libs/babel.js"></script>
 
     <script type="text/babel">
+      const { useState } = React;
 
     function TabelaBebidas() {
       return (
@@ -18,10 +19,16 @@
           <Cabecalho/>
           <table id="tabela" border="1">
             <thead>
-              <tr><th>Nome</th><th>Marca</th></tr>
+              <tr>
+                <th>Nome</th>
+                <th>Marca</th>
+              </tr>
             </thead>
           <tbody>
-              <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+              <tr>
+                <td>Havana</td>
+                <td>Engenho Anísio Santiago</td>
+              </tr>
           </tbody>
         </table>
         </div>
@@ -33,9 +40,45 @@
         <h1>Minha tabela de bebidas</h1>
       )  
     }
+    
+    const bebidas = [
+      {nome: "Sapporo Premium", estilo: "Strong Ale" },
+      {nome: "Trappistes Rochefort 10", estilo: "Pilsner" },
+    ];
 
+    function TabelaComArray(){
+      const [mostrarTabela, setMostrarTabela] = useState(false);
+      const mostrarOuEsconderTabela = () => {
+        setMostrarTabela(!mostrarTabela);
+      };
+      return (
+          <div>
+            <button onClick={mostrarOuEsconderTabela}>
+              Mostrar/Esconder Tabela
+            </button>
+            {mostrarTabela && (
+              <table id="tabela" border="1">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Estilo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bebidas.map((bebida, index) => (
+                    <tr key={index}>
+                      <td>{bebida.nome}</td>
+                      <td>{bebida.estilo}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        );
+      }
       ReactDOM.render(
-        <TabelaBebidas/>
+        <TabelaComArray/>
         ,
         document.getElementById("app")
       )
