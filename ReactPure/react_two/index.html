@@ -17,6 +17,7 @@
         render() {
           return (
             <div>
+              <h2>{this.props.titulo}</h2>
               <table id="tabela" border="1">
                 <thead>
                   <tr>
@@ -40,10 +41,10 @@
         render () {
           return (
             <div id="my-profile">
-              <img src="https://avatars.githubusercontent.com/u/112186428?v=4" width="10%"/>
+              <h2>{this.props.titulo}</h2>
+              <img src="https://avatars.githubusercontent.com/u/112186428?v=4" width="20%"/>
               <div>
-                <h2>Veja o meu perfil:</h2>
-                <a href="https://github.com/BrenoPorfirio">GITHUB</a>
+                <a href="https://github.com/BrenoPorfirio" target ="_blank">GITHUB</a>
               </div>
             </div>
           )
@@ -52,8 +53,8 @@
 
       ReactDOM.render(
         <div>
-          <TabelaBebidas />
-          <OtherComponent />
+          <TabelaBebidas titulo="Tabela de Bebidas" />
+          <OtherComponent titulo="Veja o meu perfil:"/>
         </div>,
         document.getElementById("app"));
     </script>
