@@ -1,0 +1,33 @@
+* {
+  text-align: center;
+  justify-content: center;
+}
+
+a {
+  color: purple;
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+table {
+  width: 40%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+tr {
+  background-color: gray;
+}
+
+td {
+  padding: 10px;
+  background-color: purple;
+  border: 1px solid black;
+}
+
+th {
+  padding: 10px;
+  border: 1px solid black;
+  font-weight: bold;
+}
