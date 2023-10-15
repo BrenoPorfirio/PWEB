@@ -12,40 +12,44 @@
     <script src="../../libs/react-dom.js"></script>
     <script src="../../libs/babel.js"></script>
     <script type="text/babel">
-      const TabelaBebidas = ({
-        titulo,
-        cabecalhos: [cabecalho1, cabecalho2, cabecalho3, cabecalho4],
-      }) => {
+      const TabelaBebidas = ({ titulo, cabecalhos, conteudo }) => {
         return (
           <div>
             <h1>{titulo}</h1>
             <table id="tabela" border="1">
               <thead>
                 <tr>
-                  <th>{cabecalho1}</th>
-                  <th>{cabecalho2}</th>
+                  {cabecalhos.map((cabecalho, index) => (
+                    <th key={index}>{cabecalho}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{cabecalho3}</td>
-                  <td>{cabecalho4}</td>
-                </tr>
+                {conteudo.map((conteudo, index) => (
+                  <tr key={index}>
+                    {conteudo.map((cana, outroindex) => (
+                      <td key={outroindex}>{cana}</td>
+                    ))}
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
         )
       }
-      const valoresCabecalhos = [
-        "Nome",
-        "Marca",
-        "Havana",
-        "Engenho Anísio Santiago",
+      const valoresCabecalhos = ["Nome", "Marca"]
+
+      const valoresConteudo = [
+        ["Rum Havana Club", "Havana Club"],
+        ["Cachaça 51", "Cachaça 51"],
+        ["Rum Diplomático", "Diplomático"],
       ]
+
       ReactDOM.render(
         <TabelaBebidas
           titulo="Minha tabela de cana"
           cabecalhos={valoresCabecalhos}
+          conteudo={valoresConteudo}
         />,
         document.getElementById("app")
       )
