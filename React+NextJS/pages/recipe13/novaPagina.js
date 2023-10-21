@@ -6,6 +6,7 @@ export default function Principal() {
     </div>
   )
 }
+
 export function MariaPrea(props) {
   return <h2>{props.mariaPrea}</h2>
 }
