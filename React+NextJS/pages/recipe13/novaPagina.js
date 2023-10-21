@@ -2,10 +2,10 @@ export default function Principal() {
   return (
     <div>
       <h1>Nova Página</h1>
-      <MariaPrea />
+      <MariaPrea mariaPrea="Morreu Maria Preá..." />
     </div>
   )
 }
-export function MariaPrea() {
-  return <h2>Morreu Maria Preá...</h2>
+export function MariaPrea(props) {
+  return <h2>{props.mariaPrea}</h2>
 }
