@@ -4,7 +4,7 @@ export default function Movies({ data }) {
       <div>
         {data.Search.map((m) => (
           <div>
-            {m.Title} --- {m.Year}
+            {m.Title} --- {m.Year} --- {m.Type}
           </div>
         ))}
       </div>
