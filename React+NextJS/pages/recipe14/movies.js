@@ -1,14 +1,15 @@
 import { useState } from "react"
 
-export default function Movies({ data }) {
+export default function Movies({ initialData }) {
   const [searchTerm, setSearchTerm] = useState("")
+  const [data, setData] = useState(initialData)
 
   async function searchMovies() {
     const res = await fetch(
       `http://www.omdbapi.com/?apikey=ca98445&s=${searchTerm}`
     )
     const searchData = await res.json()
-    data.Search = searchData.Search
+    setData(searchData)
   }
 
   return (
@@ -23,14 +24,16 @@ export default function Movies({ data }) {
         <button onClick={searchMovies}>Pesquisar</button>{" "}
       </div>
       <div>
-        {data.Search.map((m) => (
-          <div key={m.imdbID}>
-            <img src={m.Poster} width="180px" alt={m.Title}></img>
-            <h2>
-              {m.Title} --- {m.Year} --- {m.Type}
-            </h2>
-          </div>
-        ))}
+        {data &&
+          data.Search &&
+          data.Search.map((m) => (
+            <div key={m.imdbID}>
+              <img src={m.Poster} width="180px" alt={m.Title} />
+              <h2>
+                {m.Title} --- {m.Year} --- {m.Type}
+              </h2>
+            </div>
+          ))}
       </div>
     </div>
   )
@@ -38,10 +41,10 @@ export default function Movies({ data }) {
 
 export async function getServerSideProps(context) {
   const res = await fetch(`http://www.omdbapi.com/?apikey=ca98445&s=bagdad`)
-  const data = await res.json()
+  const initialData = await res.json()
   return {
     props: {
-      data,
+      initialData,
     },
   }
 }
