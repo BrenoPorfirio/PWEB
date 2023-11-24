@@ -16,8 +16,15 @@ export default function MovieDetail() {
   return (
     <div>
       <img src={data.Poster} alt={data.Title} />
-      <h2>{data.Title}</h2>
-      <p>{data.Year}</p>
+      <h2>Title: {data.Title}</h2>
+      <ul>
+        <li>
+          <p>Released Year: {data.Year}</p>
+        </li>
+        <li>
+          <p>Type: {data.Type}</p>
+        </li>
+      </ul>
     </div>
   )
 }
