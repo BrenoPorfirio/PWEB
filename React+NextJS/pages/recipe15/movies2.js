@@ -17,7 +17,6 @@ export default function Movies2() {
           <Link href={`/movie/${m.imdbID}`}>
             <img src={m.Poster} alt={m.Title} />
             <h2>{m.Title}</h2>
-            <p>{m.Year}</p>
           </Link>
         </div>
       ))}
