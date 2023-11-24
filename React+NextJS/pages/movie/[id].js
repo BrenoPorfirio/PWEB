@@ -24,6 +24,15 @@ export default function MovieDetail() {
         <li>
           <p>Type: {data.Type}</p>
         </li>
+        <li>
+          <p>Movie Time: {data.Runtime}</p>
+        </li>
+        <li>
+          <p>Genre: {data.Genre}</p>
+        </li>
+        <li>
+          <p>Plot: {data.Plot}</p>
+        </li>
       </ul>
     </div>
   )
