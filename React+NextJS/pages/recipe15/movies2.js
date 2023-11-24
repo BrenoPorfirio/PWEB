@@ -1,3 +1,4 @@
+import Link from "next/link"
 import useSWR from "swr"
 
 export default function Movies2() {
@@ -6,14 +7,18 @@ export default function Movies2() {
     fetcher
   )
 
-  if (error) return <div>falha na requisição...</div>
-  if (!data) return <div>carregando...</div>
+  if (error) return <div>Falha na requisição...</div>
+  if (!data) return <div>Carregando...</div>
 
   return (
     <div>
       {data.Search.map((m) => (
-        <div>
-          {m.Title} --- {m.Year}
+        <div key={m.imdbID}>
+          <Link href={`/movie/${m.imdbID}`}>
+            <img src={m.Poster} alt={m.Title} />
+            <h2>{m.Title}</h2>
+            <p>{m.Year}</p>
+          </Link>
         </div>
       ))}
     </div>
