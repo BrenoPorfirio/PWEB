@@ -13,8 +13,17 @@ export default function MovieDetail() {
   if (error) return <div>Falha na requisição...</div>
   if (!data) return <div>Carregando...</div>
 
+  const handleReturnClick = () => {
+    router.push("/recipe15/movies2")
+  }
+
+  const ButtonReturn = ({ onClick }) => {
+    return <button onClick={onClick}>Voltar</button>
+  }
+
   return (
     <div>
+      <ButtonReturn onClick={handleReturnClick} />
       <img src={data.Poster} alt={data.Title} />
       <h2>Title: {data.Title}</h2>
       <ul>
