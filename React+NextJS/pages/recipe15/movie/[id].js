@@ -10,11 +10,9 @@ export default function MovieDetail() {
     fetcher
   )
 
-
   if (error) return <div>Falha na requisição...</div>
   if (!data) return <div>Carregando...</div>
 
-  
   const handleReturnClick = () => {
     router.push("/recipe15/movies2")
   }
