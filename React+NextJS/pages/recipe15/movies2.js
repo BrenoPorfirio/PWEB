@@ -7,11 +7,9 @@ export default function Movies2() {
     fetcher
   )
 
-
   if (error) return <div>Falha na requisição...</div>
   if (!data) return <div>Carregando...</div>
 
-  
   return (
     <div>
       {data.Search.map((m) => (
