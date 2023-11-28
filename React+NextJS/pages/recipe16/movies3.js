@@ -1,6 +1,7 @@
 import useSWR from "swr"
 import { useState } from "react"
 import { Button, Card, Spin, Row, Col } from "antd"
+import Link from "next/link"
 
 const { Meta } = Card
 
@@ -19,9 +20,12 @@ export function TheMovies({ data, show }) {
   return (
     <div>
       {data.Search.map((m) => (
-        <Card key={m.imdbID} style={{ width: 300, marginBottom: 16 }}>
-          <Meta title={m.Title} description={m.Year} />
-        </Card>
+        <Link href={`onemovie/${m.imdbID}`}>
+          <Card key={m.imdbID} style={{ width: 350, marginBottom: 16 }}>
+            <img src={m.Poster} />
+            <Meta title={m.Title} description={m.Year} />
+          </Card>
+        </Link>
       ))}
     </div>
   )
