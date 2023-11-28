@@ -1,5 +1,8 @@
 import useSWR from "swr"
 import { useState } from "react"
+import { Button, Card, Spin, Row, Col } from "antd"
+
+const { Meta } = Card
 
 async function theFetcher(url) {
   if (url === null || url === "") return { Search: "" }
@@ -9,16 +12,16 @@ async function theFetcher(url) {
 }
 
 export function TheMovies({ data, show }) {
-  if (!show) return <div></div>
+  if (!show) return null
   if (data.error) return <div>falha na requisição</div>
-  if (data.Search === "") return <div>carregando...</div>
+  if (data.Search === "") return null
 
   return (
     <div>
       {data.Search.map((m) => (
-        <div>
-          {m.Title} --- {m.Year}
-        </div>
+        <Card key={m.imdbID} style={{ width: 300, marginBottom: 16 }}>
+          <Meta title={m.Title} description={m.Year} />
+        </Card>
       ))}
     </div>
   )
@@ -27,10 +30,9 @@ export function TheMovies({ data, show }) {
 export function TheLink({ url, handler }) {
   return (
     <div>
-      <a href="/movies3.js" onClick={handler}>
-        {" "}
-        {url === "" ? "Mostrar" : "Ocultar"}{" "}
-      </a>
+      <Button type="primary" onClick={handler}>
+        {url === "" ? "Mostrar" : "Ocultar"}
+      </Button>
     </div>
   )
 }
@@ -38,20 +40,33 @@ export function TheLink({ url, handler }) {
 export default function Movies3() {
   const [url, setUrl] = useState("")
   const { data, error } = useSWR(url, theFetcher)
-  const onClickHandler = (e) => {
-    e.preventDefault()
-    if (url === "") setUrl("http://www.omdbapi.com/?apikey=ca98445&s=bagdad")
-    else setUrl("")
-  }
+
+  const isShowingMovies = url !== "" && !error
+
   return (
-    <div>
-      <TheLink url={url} handler={onClickHandler} />
-      <TheMovies
-        data={
-          error ? { error: "Erro na pesquisa" } : data ? data : { Search: "" }
-        }
-        show={url !== ""}
-      />
-    </div>
+    <Row justify="center" style={{ marginTop: 16 }}>
+      <Col span={8}>
+        <TheLink
+          url={url}
+          handler={() =>
+            setUrl(
+              url === ""
+                ? "http://www.omdbapi.com/?apikey=ca98445&s=bagdad"
+                : ""
+            )
+          }
+        />
+      </Col>
+      <Col span={16}>
+        {isShowingMovies && (
+          <Spin spinning={!data} tip="Carregando..." style={{ marginTop: 24 }}>
+            <TheMovies data={data ? data : { Search: "" }} show={url !== ""} />
+          </Spin>
+        )}
+        {error && (
+          <div style={{ marginTop: 20, color: "red" }}>Erro na pesquisa</div>
+        )}
+      </Col>
+    </Row>
   )
 }
