@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import useSWR from "swr"
+import { Button, Descriptions, Spin } from "antd"
 
 export default function MovieDetail() {
   const router = useRouter()
@@ -10,39 +11,33 @@ export default function MovieDetail() {
     fetcher
   )
 
-  if (error) return <div>Falha na requisição...</div>
-  if (!data) return <div>Carregando...</div>
-
   const handleReturnClick = () => {
     router.push("/recipe16/movies3")
   }
 
   const ButtonReturn = ({ onClick }) => {
-    return <button onClick={onClick}>Voltar</button>
+    return <Button onClick={onClick}>Voltar</Button>
   }
 
+  if (error) return <div>Falha na requisição...</div>
+  if (!data) return <Spin tip="Carregando..." />
+
   return (
-    <div>
+    <div style={{ padding: 20 }}>
       <ButtonReturn onClick={handleReturnClick} />
-      <img src={data.Poster} alt={data.Title} />
-      <h2>Title: {data.Title}</h2>
-      <ul>
-        <li>
-          <p>Released Year: {data.Year}</p>
-        </li>
-        <li>
-          <p>Type: {data.Type}</p>
-        </li>
-        <li>
-          <p>Movie Time: {data.Runtime}</p>
-        </li>
-        <li>
-          <p>Genre: {data.Genre}</p>
-        </li>
-        <li>
-          <p>Plot: {data.Plot}</p>
-        </li>
-      </ul>
+      <div style={{ textAlign: "center", marginBottom: 20 }}>
+        <img src={data.Poster} alt={data.Title} style={{ maxWidth: "100%" }} />
+      </div>
+      <h1 style={{ textAlign: "center" }}>{data.Title}</h1>
+      <Descriptions bordered column={1}>
+        <Descriptions.Item label="Ano de Lançamento">
+          {data.Year}
+        </Descriptions.Item>
+        <Descriptions.Item label="Tipo">{data.Type}</Descriptions.Item>
+        <Descriptions.Item label="Duração">{data.Runtime}</Descriptions.Item>
+        <Descriptions.Item label="Gênero">{data.Genre}</Descriptions.Item>
+        <Descriptions.Item label="Enredo">{data.Plot}</Descriptions.Item>
+      </Descriptions>
     </div>
   )
 }
