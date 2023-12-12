@@ -34,16 +34,30 @@ export function TheForm({ onSubmit }) {
   );
 }
 
-export function TheMovies({ data, show }) {
+export function TheMovies({ data, show, sortDirection, toggleSort }) {
   if (!show) return <div></div>;
 
   if (!data || !data.Search) return <div></div>;
   if (data.error) return <div>falha na pesquisa</div>;
   if (data.Search === '') return <div>carregando...</div>;
 
+  const sortedMovies = [...data.Search].sort((a, b) => {
+    const titleA = a.Title.toLowerCase();
+    const titleB = b.Title.toLowerCase();
+
+    if (sortDirection === 'asc') {
+      return titleA.localeCompare(titleB);
+    } else {
+      return titleB.localeCompare(titleA);
+    }
+  });
+
   return (
     <div>
-      {data.Search.map((m) => (
+      <button onClick={toggleSort}>
+        Ordenar por Título ({sortDirection === 'asc' ? 'Crescente' : 'Decrescente'})
+      </button>
+      {sortedMovies.map((m) => (
         <div key={m.imdbID}>
           {m.Title} --- {m.Year}
         </div>
@@ -55,7 +69,7 @@ export function TheMovies({ data, show }) {
 export function TheLink({ url, handler }) {
   return (
     <div>
-      <a href="/movies_advanced.js" onClick={handler}>
+      <a href="/movies3.js" onClick={handler}>
         {url === '' ? 'Mostrar' : 'Ocultar'}
       </a>
     </div>
@@ -67,6 +81,7 @@ export default function MoviesAdvanced() {
     url: '',
     titleSearchString: '',
     yearSearchString: '',
+    sortDirection: 'asc', 
   });
 
   const { data, error } = useSWR(
@@ -101,6 +116,7 @@ export default function MoviesAdvanced() {
       url: state.url === '' ? 'https://www.omdbapi.com' : '',
       titleSearchString,
       yearSearchString,
+      sortDirection: state.sortDirection,
     });
   };
 
@@ -108,11 +124,21 @@ export default function MoviesAdvanced() {
     setState({ ...state, url: state.url === '' ? 'https://www.omdbapi.com' : '' });
   };
 
+  const toggleSort = () => {
+    const newSortDirection = state.sortDirection === 'asc' ? 'desc' : 'asc';
+    setState({ ...state, sortDirection: newSortDirection });
+  };
+
   return (
     <div>
       <TheForm onSubmit={onSubmitHandler} />
       <TheLink url={state.url} handler={onClickHandler} />
-      <TheMovies data={data ? data : { Search: '' }} show={state.url !== ''} />
+      <TheMovies
+        data={data ? data : { Search: '' }}
+        show={state.url !== ''}
+        sortDirection={state.sortDirection}
+        toggleSort={toggleSort}
+      />
     </div>
   );
 }
