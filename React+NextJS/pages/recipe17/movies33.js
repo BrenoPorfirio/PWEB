@@ -12,18 +12,22 @@ export function TheForm(){
   )
 }
 
-export function TheMovies({data,show}){
-  if (!show) return (<div></div>)
-  if (!data) return (<div></div>)
-  if (data.error) return (<div>falha na pesquisa</div>)
-  if (data.Search === '' ) return (<div>carregando...</div>)
-
-  return (
+export function TheMovies({ data, show }) {
+    if (!show) return (<div></div>)
+    if (!data || !data.Search) return (<div></div>)
+    if (data.error) return (<div>falha na pesquisa</div>)
+    if (data.Search === '') return (<div>carregando...</div>)
+    return (
       <div>
-          { data.Search.map( (m) => <div key={m.imdbID}>{m.Title} --- {m.Year}</div>  ) }            
+        {data.Search.map((m) => (
+          <div key={m.imdbID}>
+            {m.Title} --- {m.Year}
+          </div>
+        ))}
       </div>
-  )
-}
+    );
+  }
+
 export function TheLink({url, handler}){
   return (
       <div>
