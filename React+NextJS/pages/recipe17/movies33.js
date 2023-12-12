@@ -20,6 +20,15 @@ export function TheForm({ onSubmit }) {
           autoComplete="true"
           onKeyPress={handleKeyPress}
         />
+
+        <label htmlFor="yearSearchString">Filtro de Ano</label>
+        <input
+          id="yearSearchString"
+          name="yearSearchString"
+          type="text"
+          autoComplete="true"
+          onKeyPress={handleKeyPress}
+        />
       </form>
     </div>
   );
@@ -46,54 +55,57 @@ export function TheMovies({ data, show }) {
 export function TheLink({ url, handler }) {
   return (
     <div>
-      <a href="/movies3.js" onClick={handler}>
+      <a href="/movies_advanced.js" onClick={handler}>
         {url === '' ? 'Mostrar' : 'Ocultar'}
       </a>
     </div>
   );
 }
 
-export default function Movies33() {
-  const [state, setState] = useState({ url: '', titleSearchString: '' });
-  const { data, error } = useSWR(state.url, async (u) => {
-    if (!state.url || !state.titleSearchString) return { Search: '' };
-    if (state.url === '' || state.titleSearchString === '') return { Search: '' };
-
-    const res = await fetch(`${state.url}/?apiKey=ca98445&s=${state.titleSearchString}`);
-    const json = await res.json();
-    return json;
+export default function MoviesAdvanced() {
+  const [state, setState] = useState({
+    url: '',
+    titleSearchString: '',
+    yearSearchString: '',
   });
+
+  const { data, error } = useSWR(
+    state.url,
+    async (u) => {
+      if (!state.url) return { Search: '' };
+      const queryString = `s=${state.titleSearchString}&y=${state.yearSearchString}`;
+      const res = await fetch(`${state.url}/?apiKey=ca98445&${queryString}`);
+      const json = await res.json();
+      return json;
+    },
+    {
+      revalidateOnFocus: false,
+    }
+  );
 
   const onClickHandler = (e) => {
     e.preventDefault();
-
-    let searchString = document.getElementById('titleSearchString').value;
-
-    if (!searchString.trim()) {
-      alert('O campo de pesquisa não pode estar vazio!');
-      return;
-    }
-
-    if (state.url === '') {
-      setState({ url: 'http://www.omdbapi.com', titleSearchString: searchString });
-    } else {
-      setState({ url: '', titleSearchString: state.titleSearchString });
-    }
+    toggleVisibility();
   };
 
   const onSubmitHandler = () => {
-    let searchString = document.getElementById('titleSearchString').value;
+    let titleSearchString = document.getElementById('titleSearchString').value;
+    let yearSearchString = document.getElementById('yearSearchString').value;
 
-    if (!searchString.trim()) {
-      alert('O campo de pesquisa não pode estar vazio!');
+    if (!titleSearchString.trim()) {
+      alert('O campo de título não pode estar vazio!');
       return;
     }
 
-    if (state.url === '') {
-      setState({ url: 'http://www.omdbapi.com', titleSearchString: searchString });
-    } else {
-      setState({ url: '', titleSearchString: state.titleSearchString });
-    }
+    setState({
+      url: state.url === '' ? 'https://www.omdbapi.com' : '',
+      titleSearchString,
+      yearSearchString,
+    });
+  };
+
+  const toggleVisibility = () => {
+    setState({ ...state, url: state.url === '' ? 'https://www.omdbapi.com' : '' });
   };
 
   return (
